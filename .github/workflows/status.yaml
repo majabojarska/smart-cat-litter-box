@@ -18,7 +18,7 @@ jobs:
           python-version: "3.14"
           cache: "pip"
 
-      - run: pip install esphome
+      - run: pip install -r requirements.txt
 
       - name: Validate ESPHome config
         run: esphome config cat-litter-box.yaml
@@ -34,7 +34,7 @@ jobs:
           python-version: "3.14"
           cache: "pip"
 
-      - run: pip install esphome
+      - run: pip install -r requirements.txt
 
       - name: Compile ESPHome build
         run: esphome compile cat-litter-box.yaml
