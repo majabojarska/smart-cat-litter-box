@@ -1,5 +1,7 @@
 # smart-cat-litter-box
 
+[![Status](https://github.com/majabojarska/smart-cat-litter-box/actions/workflows/status.yaml/badge.svg)](https://github.com/majabojarska/smart-cat-litter-box/actions/workflows/status.yaml)
+
 Cat litter box platform with weight analysis ⚖️🐈
 
 This project is basically a glorified smart weight scale, geared towards cat health analysis.
