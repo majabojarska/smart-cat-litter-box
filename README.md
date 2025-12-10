@@ -8,14 +8,18 @@ This project is basically a glorified smart weight scale, geared towards cat hea
 
 ## Bill of Materials
 
-- 4x 50kg load cell (or less).
-- HX711 load cell amplifier module.
-- ESP8266, ESP32, or other [ESPHome-supported board](https://esphome.io/components/#supported-microcontrollers)
-- Misc. electronics:
-  - Universal PCB.
-  - 2.54mm pin headers and sockets, DuPont connectors.
-  - Some jumper wires to route connections.
-- 4x [load cell holder](https://www.printables.com/model/157473-load-cell-holder) – 3D printed.
+- Electronics:
+  - 4x 50kg load cell (or less).
+  - HX711 load cell amplifier module.
+  - ESP8266, ESP32, or other [ESPHome-supported board](https://esphome.io/components/#supported-microcontrollers)
+  - Misc. electronics:
+    - Universal PCB.
+    - 2.54mm pin headers and sockets, DuPont connectors.
+    - Some jumper wires to route connections.
+  - 4x [load cell holder](https://www.printables.com/model/157473-load-cell-holder) – 3D printed.
+- Platform – feel free to improvise here.
+  - Appropriately sized piece of flat and stiff material, like a wooden plank, old shelves, etc. Needs to be big enough to accomodate our cat's litter box on top.
+  - Wooden slats to raise the platform slightly above ground, in order to make room for housing the electronics underneath.
 
 Alternatively, instead of using sockets and connectors, this project can be just soldered together and glued to the platform's underside. The choice of final effect and durability is up to you.
 
