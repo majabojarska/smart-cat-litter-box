@@ -6,6 +6,19 @@ Cat litter box platform with weight analysis ⚖️🐈
 
 This project is basically a glorified smart weight scale, geared towards cat health analysis.
 
+## Bill of Materials
+
+- 4x 50kg load cell (or less).
+- HX711 load cell amplifier module.
+- ESP8266, ESP32, or other [ESPHome-supported board](https://esphome.io/components/#supported-microcontrollers)
+- Misc. electronics:
+  - Universal PCB.
+  - 2.54mm pin headers and sockets, DuPont connectors.
+  - Some jumper wires to route connections.
+- 4x [load cell holder](https://www.printables.com/model/157473-load-cell-holder) – 3D printed.
+
+Alternatively, instead of using sockets and connectors, this project can be just soldered together and glued to the platform's underside. The choice of final effect and durability is up to you.
+
 ## Credits & License
 
 The ESPHome sources of this project and wiring diagrams are based on [markusressel/ESPHome-Smart-Scale (rev a5c398b](https://github.com/markusressel/ESPHome-Smart-Scale/blob/a5c398be2e12997aeb6e18378eb6f32f34531625/). That revision was published under the [CC0-1.0 license](https://github.com/markusressel/ESPHome-Smart-Scale/blob/a5c398be2e12997aeb6e18378eb6f32f34531625/LICENSE).
