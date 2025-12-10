@@ -25,11 +25,11 @@ Alternatively, instead of using sockets and connectors, this project can be just
 
 ## Credits & License
 
-The ESPHome sources of this project and wiring diagrams are based on [markusressel/ESPHome-Smart-Scale (rev a5c398b](https://github.com/markusressel/ESPHome-Smart-Scale/blob/a5c398be2e12997aeb6e18378eb6f32f34531625/). That revision was published under the [CC0-1.0 license](https://github.com/markusressel/ESPHome-Smart-Scale/blob/a5c398be2e12997aeb6e18378eb6f32f34531625/LICENSE).
+The ESPHome sources of this project and wiring diagrams are based on [markusressel/ESPHome-Smart-Scale (rev a5c398b)](https://github.com/markusressel/ESPHome-Smart-Scale/blob/a5c398be2e12997aeb6e18378eb6f32f34531625/). That revision was published under the [CC0-1.0 license](https://github.com/markusressel/ESPHome-Smart-Scale/blob/a5c398be2e12997aeb6e18378eb6f32f34531625/LICENSE).
 
 Given that the CC0-1.0 license:
 
-- wasn't really designed for software, nor is it recognized by the [Open Source Initiative](https://opensource.org/)
+- wasn't really designed for software, nor is it recognized by the [Open Source Initiative](https://opensource.org/);
 - it effectively placed the original work under the public domain;
 
 I'm releasing this derivative work under the [MIT license](https://opensource.org/license/mit).
