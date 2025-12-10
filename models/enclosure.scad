@@ -145,10 +145,10 @@ printerLayerHeight = 0.2;
 //--     C O N T R O L     --
 //---------------------------
 // -- Render --
-renderQuality = 16; //-> from 1 to 32, Default = 8
+renderQuality = 8; //-> from 1 to 32, Default = 8
 
 // --Preview --
-previewQuality = 4; //-> from 1 to 32, Default = 5
+previewQuality = 5; //-> from 1 to 32, Default = 5
 showSideBySide = true; //-> Default = true
 onLidGap = 0; // tip don't override to animate the lid opening
 colorLid = "YellowGreen";
@@ -412,10 +412,10 @@ snapJoins =
 //-------------------------------------------------------------------
 boxMounts =
 [
-  [4.5, 4.5, 0, 5, yappFront],
-  [shellWidth - 4.5, 4.5, 0, 5, yappFront],
-  [4.5, 4.5, 0, 5, yappBack],
-  [shellWidth - 4.5, 4.5, 0, 5, yappBack],
+  [10 + 4.5, 4.5, 0, 5, yappFront],
+  [shellWidth - 10 - 4.5, 4.5, 0, 5, yappFront],
+  [10 + 4.5, 4.5, 0, 5, yappBack],
+  [shellWidth - 10 - 4.5, 4.5, 0, 5, yappBack],
   // ,[36, 5, shellLength, 7, yappLeft] 
 ];
 
