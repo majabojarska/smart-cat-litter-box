@@ -45,24 +45,23 @@ include <./YAPP_Box/YAPPgenerator_v3.scad>
                           LEFT
 */
 
-
 //-- which part(s) do you want to print?
-printBaseShell        = true;
-printLidShell         = true;
-printSwitchExtenders  = true;
-printDisplayClips     = true;
+printBaseShell = true;
+printLidShell = true;
+printSwitchExtenders = true;
+printDisplayClips = true;
 
 // ********************************************************************
 // The Following will be used as the first element in the pbc array
 
 //Defined here so you can define the "Main" PCB using these if wanted
-pcbLength           = 150; // front to back (X axis)
-pcbWidth            = 100; // side to side (Y axis)
-pcbThickness        = 1.6; 
-standoffHeight      = 1.0; //-- How much the PCB needs to be raised from the base to leave room for solderings and whatnot
-standoffDiameter    = 7;
+pcbLength = 60; // front to back (X axis)
+pcbWidth = 80; // side to side (Y axis)
+pcbThickness = 1.5;
+standoffHeight = 2.6; //-- How much the PCB needs to be raised from the base to leave room for solderings and whatnot
+standoffDiameter = 7;
 standoffPinDiameter = 2.4;
-standoffHoleSlack   = 0.4;
+standoffHoleSlack = 0.4;
 
 //===================================================================
 // *** PCBs ***
@@ -95,23 +94,23 @@ standoffHoleSlack   = 0.4;
 //  standoffPinDiameter --> standoffPinDiameter("PCB Name") 
 //  standoffHoleSlack   --> standoffHoleSlack("PCB Name") 
 
-pcb = 
+pcb =
 [
   // Default Main PCB - DO NOT REMOVE the "Main" line.
-  ["Main",              pcbLength,pcbWidth,    0,0,    pcbThickness,  standoffHeight, standoffDiameter, standoffPinDiameter, standoffHoleSlack]
+  ["Main", pcbLength, pcbWidth, 0, 0, pcbThickness, standoffHeight, standoffDiameter, standoffPinDiameter, standoffHoleSlack],
 ];
 
 //-------------------------------------------------------------------                            
 //-- padding between pcb and inside wall
-paddingFront        = 2;
-paddingBack         = 2;
-paddingRight        = 2;
-paddingLeft         = 2;
+paddingFront = 2;
+paddingBack = 2;
+paddingRight = 2 + 13;
+paddingLeft = 2 + 13;
 
 //-- Edit these parameters for your own box dimensions
-wallThickness       = 2.0;
-basePlaneThickness  = 1.5;
-lidPlaneThickness   = 1.5;
+wallThickness = 2.4;
+basePlaneThickness = 1.5;
+lidPlaneThickness = 1.5;
 
 //-- Total height of box = lidPlaneThickness 
 //                       + lidWallHeight 
@@ -119,16 +118,16 @@ lidPlaneThickness   = 1.5;
 //                       + basePlaneThickness
 //-- space between pcb and lidPlane :=
 //--      (bottonWallHeight+lidWallHeight) - (standoffHeight+pcbThickness)
-baseWallHeight      = 25;
-lidWallHeight       = 23;
+baseWallHeight = 12;
+lidWallHeight = 10;
 
 //-- ridge where base and lid off box can overlap
 //-- Make sure this isn't less than lidWallHeight
-ridgeHeight         = 5.0;
-ridgeSlack          = 0.3; // Gap between the inside of the lid and the outside of the base
+ridgeHeight = 5.0;
+ridgeSlack = 0.3; // Gap between the inside of the lid and the outside of the base
 //New in v3.3.7 
-ridgeGap            = 0.5; // Gap between the bottom of the base ridge and the bottom of the lid when assembled.
-roundRadius         = 3.0;
+ridgeGap = 0.5; // Gap between the bottom of the base ridge and the bottom of the lid when assembled.
+roundRadius = 3.0;
 
 // Box Types are 0-4 with 0 as the default
 // 0 = All edges rounded with radius (roundRadius) above
@@ -137,43 +136,42 @@ roundRadius         = 3.0;
 // 3 = Square top and bottom edges (the ones that touch the build plate) and rounded vertical edges
 // 4 = Square top and bottom edges (the ones that touch the build plate) and chamfered vertical edges
 // 5 = Chanfered top and bottom edges (the ones that touch the build plate) and rounded vertical edges
-boxType             = 0; // Default type 0
+boxType = 3; // Default type 0
 
 // Set the layer height of your printer
-printerLayerHeight  = 0.2;
-
+printerLayerHeight = 0.2;
 
 //---------------------------
 //--     C O N T R O L     --
 //---------------------------
 // -- Render --
-renderQuality             = 8;          //-> from 1 to 32, Default = 8
+renderQuality = 16; //-> from 1 to 32, Default = 8
 
 // --Preview --
-previewQuality            = 5;          //-> from 1 to 32, Default = 5
-showSideBySide            = true;       //-> Default = true
-onLidGap                  = 0;  // tip don't override to animate the lid opening
-colorLid                  = "YellowGreen";   
-alphaLid                  = 1;
-colorBase                 = "BurlyWood";
-alphaBase                 = 1;
-hideLidWalls              = false;      //-> Remove the walls from the lid : only if preview and showSideBySide=true 
-hideBaseWalls             = false;      //-> Remove the walls from the base : only if preview and showSideBySide=true  
-showOrientation           = true;       //-> Show the Front/Back/Left/Right labels : only in preview
-showPCB                   = false;      //-> Show the PCB in red : only in preview 
-showSwitches              = false;      //-> Show the switches (for pushbuttons) : only in preview 
-showButtonsDepressed      = false;      //-> Should the buttons in the Lid On view be in the pressed position
-showOriginCoordBox        = false;      //-> Shows red bars representing the origin for yappCoordBox : only in preview 
-showOriginCoordBoxInside  = false;      //-> Shows blue bars representing the origin for yappCoordBoxInside : only in preview 
-showOriginCoordPCB        = false;      //-> Shows blue bars representing the origin for yappCoordBoxInside : only in preview 
-showMarkersPCB            = false;      //-> Shows black bars corners of the PCB : only in preview 
-showMarkersCenter         = false;      //-> Shows magenta bars along the centers of all faces  
-inspectX                  = 0;          //-> 0=none (>0 from Back)
-inspectY                  = 0;          //-> 0=none (>0 from Right)
-inspectZ                  = 0;          //-> 0=none (>0 from Bottom)
-inspectXfromBack          = true;       //-> View from the inspection cut foreward
-inspectYfromLeft          = true;       //-> View from the inspection cut to the right
-inspectZfromBottom        = true;       //-> View from the inspection cut up
+previewQuality = 4; //-> from 1 to 32, Default = 5
+showSideBySide = true; //-> Default = true
+onLidGap = 0; // tip don't override to animate the lid opening
+colorLid = "YellowGreen";
+alphaLid = 1;
+colorBase = "BurlyWood";
+alphaBase = 1;
+hideLidWalls = false; //-> Remove the walls from the lid : only if preview and showSideBySide=true 
+hideBaseWalls = false; //-> Remove the walls from the base : only if preview and showSideBySide=true  
+showOrientation = true; //-> Show the Front/Back/Left/Right labels : only in preview
+showPCB = false; //-> Show the PCB in red : only in preview 
+showSwitches = false; //-> Show the switches (for pushbuttons) : only in preview 
+showButtonsDepressed = false; //-> Should the buttons in the Lid On view be in the pressed position
+showOriginCoordBox = false; //-> Shows red bars representing the origin for yappCoordBox : only in preview 
+showOriginCoordBoxInside = false; //-> Shows blue bars representing the origin for yappCoordBoxInside : only in preview 
+showOriginCoordPCB = false; //-> Shows blue bars representing the origin for yappCoordBoxInside : only in preview 
+showMarkersPCB = false; //-> Shows black bars corners of the PCB : only in preview 
+showMarkersCenter = false; //-> Shows magenta bars along the centers of all faces  
+inspectX = 0; //-> 0=none (>0 from Back)
+inspectY = 0; //-> 0=none (>0 from Right)
+inspectZ = 0; //-> 0=none (>0 from Bottom)
+inspectXfromBack = true; //-> View from the inspection cut foreward
+inspectYfromLeft = true; //-> View from the inspection cut to the right
+inspectZfromBottom = true; //-> View from the inspection cut up
 //---------------------------
 //--     C O N T R O L     --
 //---------------------------
@@ -202,9 +200,8 @@ inspectZfromBottom        = true;       //-> View from the inspection cut up
 // To see how to add your own shapes and mask see the YAPPgenerator program
 //------------------------------------------------------------------
 
-
 // Show sample of a Mask
-//SampleMask(maskHoneycomb);
+// SampleMask(maskHoneycomb);
 
 //===================================================================
 // *** PCB Supports ***
@@ -240,10 +237,13 @@ inspectZfromBottom        = true;       //-> View from the inspection cut up
 //             This ignores the holeSlack and would only be usefull 
 //             if the opposing stand if deleted see sample in Demo_Connectors
 //-------------------------------------------------------------------
-pcbStands = 
-[
-];
 
+pcbStands = [
+  [2, pcbWidth - 2, yappBoth, yappPin],
+  [2, 2, yappBoth, yappPin],
+  [pcbLength - 2, pcbWidth - 2, yappBoth, yappPin],
+  [pcbLength - 2, 2, yappBoth, yappPin],
+];
 
 //===================================================================
 //  *** Connectors ***
@@ -274,10 +274,22 @@ pcbStands =
 //    n(h) = { yappNoInternalFillet } : Don't add internal fillets (external fillets can still be added)
 
 //-------------------------------------------------------------------
-connectors   =
-[
-];
 
+connectors =
+[
+  [
+    4, //-- x
+    -(9), //-- y 
+    6,
+    3.7, //-- diameter of the screw (add some slack)
+    6, //-- the diameter of the screw head
+    4.2, //-- the diameter of the insert
+    9, //-- the outside diameter of the connector
+    yappAllCorners,
+    yappCoordPCB,
+    yappThroughLid,
+  ],
+];
 
 //===================================================================
 //  *** Cutouts ***
@@ -332,33 +344,29 @@ connectors   =
 //    n(g) = [yappPCBName, "XXX"] : Specify a PCB. Defaults to [yappPCBName, "Main"]
 //    n(h) = { yappFromInside } Make the cut from the inside towards the outside
 //-------------------------------------------------------------------
-cutoutsBase = 
+cutoutsBase =
 [
 ];
 
-cutoutsLid  = 
-[
-
-];
-
-cutoutsFront =  
+cutoutsLid =
 [
 ];
 
-
-cutoutsBack = 
+cutoutsFront =
 [
 ];
 
-cutoutsLeft =   
+cutoutsBack =
 [
 ];
 
-cutoutsRight =  
+cutoutsLeft =
 [
 ];
 
-
+cutoutsRight =
+[
+];
 
 //===================================================================
 //  *** Snap Joins ***
@@ -375,7 +383,7 @@ cutoutsRight =
 //    n(b) = { yappSymmetric }
 //    n(c) = { yappRectangle } == Make a diamond shape snap
 //-------------------------------------------------------------------
-snapJoins   =   
+snapJoins =
 [
 ];
 
@@ -404,6 +412,11 @@ snapJoins   =
 //-------------------------------------------------------------------
 boxMounts =
 [
+  [4.5, 4.5, 0, 5, yappFront],
+  [shellWidth - 4.5, 4.5, 0, 5, yappFront],
+  [4.5, 4.5, 0, 5, yappBack],
+  [shellWidth - 4.5, 4.5, 0, 5, yappBack],
+  // ,[36, 5, shellLength, 7, yappLeft] 
 ];
 
 //===================================================================
@@ -464,10 +477,10 @@ lightTubes =
 //    n(c) = { yappNoFillet }
 //    n(d) = [yappPCBName, "XXX"] : Specify a PCB. Defaults to [yappPCBName, "Main"]
 //-------------------------------------------------------------------
-pushButtons = 
+pushButtons =
 [
 ];
-             
+
 //===================================================================
 //  *** Labels ***
 //-------------------------------------------------------------------
@@ -492,7 +505,6 @@ pushButtons =
 labelsPlane =
 [
 ];
-
 
 //===================================================================
 //  *** Ridge Extension ***
@@ -529,7 +541,6 @@ ridgeExtFront =
 ridgeExtBack =
 [
 ];
-
 
 //===================================================================
 //  *** Display Mounts ***
@@ -569,46 +580,40 @@ displayMounts =
 ];
 
 //========= HOOK functions ============================
-  
+
 // Hook functions allow you to add 3d objects to the case.
 // Lid/Base = Shell part to attach the object to.
 // Inside/Outside = Join the object from the midpoint of the shell to the inside/outside.
 // Pre = Attach the object Pre before doing Cutouts/Stands/Connectors. 
 
-
 //===========================================================
 // origin = box(0,0,0)
-module hookLidInside()
-{
+module hookLidInside() {
   //if (printMessages) echo("hookLidInside() ..");
-  
-} // hookLidInside()
-  
+}
+// hookLidInside()
 
 //===========================================================
 // origin = box(0,0,shellHeight)
-module hookLidOutside()
-{
+module hookLidOutside() {
   //if (printMessages) echo("hookLidOutside() ..");
-  
-} // hookLidOutside()
+}
+// hookLidOutside()
 
 //===========================================================
 //===========================================================
 // origin = box(0,0,0)
-module hookBaseInside()
-{
+module hookBaseInside() {
   //if (printMessages) echo("hookBaseInside() ..");
-  
-} // hookBaseInside()
+}
+// hookBaseInside()
 
 //===========================================================
 // origin = box(0,0,0)
-module hookBaseOutside()
-{
+module hookBaseOutside() {
   //if (printMessages) echo("hookBaseOutside() ..");
-  
-} // hookBaseInside()
+}
+// hookBaseInside()
 
 // **********************************************************
 // **********************************************************
