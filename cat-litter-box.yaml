@@ -1,17 +1,21 @@
-## Node configuration ##
-
 esphome:
-  name: smart_scale
+  name: cat-litter-box
+  friendly_name: Cat Litter Box
+  comment: Weight scale platform for a cat litter box
 
 esp8266:
   board: nodemcuv2
+
+time:
+  - platform: homeassistant
+    id: homeassistant_time
 
 globals:
   - id: initial_zero
     type: float
     restore_value: yes
     # NOTE: make sure to align this value to the one used in "calibrate_linear" below!
-    initial_value: "-481989"
+    initial_value: "-681502"
 
   - id: auto_tare_enabled
     type: bool
@@ -23,28 +27,34 @@ globals:
     restore_value: yes
     initial_value: "0"
 
+ota:
+  - platform: esphome
+    password: !secret cat_litter_box_ota_password
+
 wifi:
-  fast_connect: True # needed for hidden SSID
-  networks:
-    - ssid: "YourSSID"
-      bssid: "00:00:00:00:00:00"
-      password: "YourPassword"
-      hidden: true
-  #manual_ip:
-  #  static_ip: 192.168.5.49
-  #  gateway: 192.168.5.1
-  #  subnet: 255.255.255.0
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+  domain: !secret domain
+  ap:
+    password: !secret cat_litter_box_wifi_ap_password
+
+captive_portal:
 
 api:
-  password: "YourApiPassword"
+  encryption:
+    key: !secret cat_litter_box_api_key
+  reboot_timeout: 0s
+
+web_server:
+  port: 80
+  version: 2
+  auth:
+    username: !secret cat_litter_box_web_server_username
+    password: !secret cat_litter_box_web_server_password
 
 # Enable logging
 logger:
-  level: ERROR
-
-ota:
-  platform: esphome
-  password: "YourOtaPassword"
+  level: INFO
 
 status_led:
   pin:
@@ -117,8 +127,8 @@ sensor:
   - platform: hx711
     id: smart_scale_hx711_value_raw
     internal: True
-    dout_pin: D0
-    clk_pin: D1
+    dout_pin: D6
+    clk_pin: D7
     gain: 128
     update_interval: 0.2s
     filters:
@@ -147,7 +157,7 @@ sensor:
               and:
                 - lambda: "return id(auto_tare_enabled);"
                 # current smart scale value is below approx. 10KG (raw value -275743) aka nobody is standing on the scale
-                - lambda: "return id(smart_scale_hx711_value).state < 10.0;"
+                - lambda: "return id(smart_scale_hx711_value).state < 10.0;" #
                 # only update if the current deviance is not 0
                 - lambda: "return id(smart_scale_auto_tare_deviance).state != 0.0;"
             then:
@@ -182,8 +192,14 @@ sensor:
           # retrieve these values by evaluating the raw values with loads of known mass.
           # note that a bigger difference between measurements usually results in higher resolution,
           # so measure 0 Kg and the highest known mass you have (like f.ex. your own weight, measured by a normal scale with good accuracy)
-          - -481989 -> 0
-          - 1339163 -> 88.3
+          - -681502 -> 0
+          - -670838 -> 0.899
+          - -643407 -> 2.136
+          - -577769 -> 5.1
+          - -529659 -> 7.236
+          - -454071 -> 10.6
+          - -293209 -> 17.836
+          - 640830 -> 57.6
       # map values below 0.1 to 0 (to decrease value changes due to random fluctuation)
       - lambda: |-
           if (x <= 0.1) {
