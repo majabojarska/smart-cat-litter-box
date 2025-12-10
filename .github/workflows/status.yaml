@@ -38,3 +38,14 @@ jobs:
 
       - name: Compile ESPHome build
         run: esphome compile cat-litter-box.yaml
+
+  openscad:
+    name: Build OpenSCAD project
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - run: apt-get install openscad -y
+
+      # Lowest quality, fastest, just a validity check
+      - run: openscad models/enclosure.scad -D 'renderQuality=1' -o models/enclosure.stl
