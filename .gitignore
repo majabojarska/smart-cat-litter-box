@@ -4,3 +4,7 @@
 /.esphome/
 /secrets.yaml
 
+**/*.stl
+**/*.png
+**/*.jpeg
+**/*.jpg
