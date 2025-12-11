@@ -55,6 +55,7 @@ jobs:
           path: openscad
 
       # Start virtual fb
+      # Works around https://github.com/openscad/openscad/issues/3983
       - run: |
           ./openscad/tests/virtualfb.sh && \
           echo "DISPLAY=$(cat ./virtualfb.DISPLAY)" >> "${GITHUB_ENV}"
