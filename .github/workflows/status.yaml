@@ -45,7 +45,7 @@ jobs:
     steps:
       - uses: actions/checkout@v6
 
-      - run: sudo apt-get update && apt-get install openscad -y
+      - run: sudo apt-get update && sudo apt-get install openscad -y
 
       # Lowest quality, fastest, just a validity check
       - run: openscad models/enclosure.scad -D 'renderQuality=1' -o models/enclosure.stl
