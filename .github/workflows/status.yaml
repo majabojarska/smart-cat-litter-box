@@ -49,5 +49,10 @@ jobs:
 
       - run: sudo apt-get update && sudo apt-get install openscad -y
 
-      # Lowest quality, fastest, just a validity check
-      - run: openscad models/enclosure.scad -D 'renderQuality=1' -o models/enclosure.stl
+      - run: openscad models/enclosure.scad -D 'renderQuality=8' -o models/enclosure.png --imgsize 1600,1600 && xdg-open models/enclosure.png
+
+      - name: Archive code coverage results
+        uses: actions/upload-artifact@v4
+        with:
+          name: OpenSCAD render
+          path: models/enclosure.png
