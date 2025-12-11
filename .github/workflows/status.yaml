@@ -49,8 +49,7 @@ jobs:
 
       - run: sudo apt-get update && sudo apt-get install openscad -y
 
-      - run: openscad models/enclosure.scad -D 'renderQuality=8' -o models/enclosure.png --imgsize 1600,1600 && xdg-open models/enclosure.png
-
+      - run: openscad models/enclosure.scad -D 'renderQuality=8' --imgsize 1600,1600 -o models/enclosure.png
       - name: Archive code coverage results
         uses: actions/upload-artifact@v4
         with:
