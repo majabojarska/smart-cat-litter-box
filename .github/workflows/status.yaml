@@ -41,13 +41,11 @@ jobs:
 
   openscad:
     name: Build OpenSCAD project
-    runs-on: ubuntu-latest
+    runs-on: openscad/openscad
     steps:
       - uses: actions/checkout@v6
         with:
           submodules: true
-
-      - run: sudo apt-get update && sudo apt-get install openscad -y
 
       - run: openscad models/enclosure.scad -D 'previewQuality=8' --imgsize 2000,1000 -o models/enclosure.png --projection=ortho --camera=60,120,30,50,0,70,360
 
