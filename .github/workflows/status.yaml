@@ -49,8 +49,9 @@ jobs:
 
       - run: sudo apt-get update && sudo apt-get install openscad -y
 
-      - run: openscad models/enclosure.scad -D 'renderQuality=8' --imgsize 1600,1600 -o models/enclosure.png
-      - name: Archive code coverage results
+      - run: openscad models/enclosure.scad -D 'previewQuality=8' --imgsize 2000,1000 -o models/enclosure.png --projection=ortho --camera=60,120,30,50,0,70,360
+
+      - name: Archive render
         uses: actions/upload-artifact@v4
         with:
           name: OpenSCAD render
