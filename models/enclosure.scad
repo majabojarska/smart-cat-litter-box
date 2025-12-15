@@ -536,8 +536,6 @@ ridgeExtRight =
 ridgeExtFront =
 [
   [16, 55, 11, yappCoordPCB, yappLeft],
-  //  [54, 32, 11, yappLeftOrigin, yappCoordPCB, yappCenter],
-  //[29, 15, 15, 6, 3, yappRoundedRect, yappCenter, yappCoordPCB],
 ];
 
 ridgeExtBack =
