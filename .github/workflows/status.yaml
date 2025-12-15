@@ -38,3 +38,38 @@ jobs:
 
       - name: Compile ESPHome build
         run: esphome compile cat-litter-box.yaml
+
+  openscad:
+    name: Render OpenSCAD preview
+    runs-on: ubuntu-latest
+    steps:
+      - run: sudo apt-get update && sudo apt-get install openscad -y
+
+      - uses: actions/checkout@v6
+        with:
+          submodules: true
+
+      - uses: actions/checkout@v6
+        with:
+          repository: openscad/openscad
+          path: openscad
+
+      # Start virtual fb
+      # Works around https://github.com/openscad/openscad/issues/3983
+      - run: |
+          ./openscad/tests/virtualfb.sh && \
+          echo "DISPLAY=$(cat ./virtualfb.DISPLAY)" >> "${GITHUB_ENV}"
+
+      - run: openscad models/enclosure.scad -D 'previewQuality=8' --imgsize 2000,1000 -o models/enclosure.png --projection=ortho --camera=60,120,30,50,0,70,360
+
+      # Stop virtual fb
+      - run: |
+          ./openscad/tests/virtualfb.sh
+
+      - run: ls -alh ./models
+
+      - name: Archive render
+        uses: actions/upload-artifact@v4
+        with:
+          name: OpenSCAD render
+          path: models/enclosure.png

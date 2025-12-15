@@ -4,9 +4,12 @@
 
 Cat litter box platform with weight analysis ⚖️🐈
 
-This project is basically a glorified smart weight scale, geared towards cat health analysis.
+- A glorified smart weight scale, geared towards cat health analysis.
+- Tracks cat weight and litter box usage frequency.
 
-## Bill of Materials
+## Getting started
+
+### Bill of Materials
 
 - Electronics:
   - 4x 50kg load cell (or less).
@@ -22,6 +25,21 @@ This project is basically a glorified smart weight scale, geared towards cat hea
   - Wooden slats to raise the platform slightly above ground, in order to make room for housing the electronics underneath.
 
 Alternatively, instead of using sockets and connectors, this project can be just soldered together and glued to the platform's underside. The choice of final effect and durability is up to you.
+
+### Configuration
+
+🚧
+
+### Build & flash
+
+🚧
+
+## To-do 🚧
+
+- Draw circuit diagram
+- Add photos
+- Design TSDB ingest and storage
+- Design cat weight analysis and cat litter event detection
 
 ## Credits & License
 
