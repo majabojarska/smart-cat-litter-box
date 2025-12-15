@@ -60,7 +60,7 @@ pcbWidth = 80; // side to side (Y axis)
 pcbThickness = 1.5;
 standoffHeight = 2.6; //-- How much the PCB needs to be raised from the base to leave room for solderings and whatnot
 standoffDiameter = 7;
-standoffPinDiameter = 2.4;
+standoffPinDiameter = 1.6;
 standoffHoleSlack = 0.4;
 
 //===================================================================
@@ -118,7 +118,7 @@ lidPlaneThickness = 1.5;
 //                       + basePlaneThickness
 //-- space between pcb and lidPlane :=
 //--      (bottonWallHeight+lidWallHeight) - (standoffHeight+pcbThickness)
-baseWallHeight = 12;
+baseWallHeight = 13;
 lidWallHeight = 10;
 
 //-- ridge where base and lid off box can overlap
@@ -239,10 +239,7 @@ inspectZfromBottom = true; //-> View from the inspection cut up
 //-------------------------------------------------------------------
 
 pcbStands = [
-  [2, pcbWidth - 2, yappBoth, yappPin],
-  [2, 2, yappBoth, yappPin],
-  [pcbLength - 2, pcbWidth - 2, yappBoth, yappPin],
-  [pcbLength - 2, 2, yappBoth, yappPin],
+  [2, 2, yappBoth, yappPin, yappAllCorners],
 ];
 
 //===================================================================
@@ -354,6 +351,8 @@ cutoutsLid =
 
 cutoutsFront =
 [
+  [28, 11, 11, 9, 2, yappRoundedRect, yappCenter, yappCoordPCB],
+  [54, 11, 18, 13, 2, yappRoundedRect, yappCenter, yappCoordPCB],
 ];
 
 cutoutsBack =
@@ -536,6 +535,9 @@ ridgeExtRight =
 
 ridgeExtFront =
 [
+  [16, 55, 11, yappCoordPCB, yappLeft],
+  //  [54, 32, 11, yappLeftOrigin, yappCoordPCB, yappCenter],
+  //[29, 15, 15, 6, 3, yappRoundedRect, yappCenter, yappCoordPCB],
 ];
 
 ridgeExtBack =
