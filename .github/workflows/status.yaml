@@ -69,7 +69,7 @@ jobs:
       - run: ls -alh ./models
 
       - name: Archive render
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: OpenSCAD render
           path: models/enclosure.png
