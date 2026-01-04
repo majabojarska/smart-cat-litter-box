@@ -196,7 +196,7 @@ sensor:
           - 724156 -> 57.5
       # map values below 0.1 to 0 (to decrease value changes due to random fluctuation)
       - lambda: |-
-          if (x <= 0.1) {
+          if (abs(x) <= 0.1) {
             return 0.0;
           } else {
             return x;
