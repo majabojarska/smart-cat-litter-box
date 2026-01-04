@@ -15,7 +15,7 @@ globals:
     type: float
     restore_value: yes
     # NOTE: make sure to align this value to the one used in "calibrate_linear" below!
-    initial_value: "-681502"
+    initial_value: "-613431"
 
   - id: auto_tare_enabled
     type: bool
@@ -157,7 +157,7 @@ sensor:
               and:
                 - lambda: "return id(auto_tare_enabled);"
                 # current smart scale value is below approx. 10KG (raw value -275743) aka nobody is standing on the scale
-                - lambda: "return id(smart_scale_hx711_value).state < 10.0;" #
+                - lambda: "return id(smart_scale_hx711_value).state < 3.0;" #
                 # only update if the current deviance is not 0
                 - lambda: "return id(smart_scale_auto_tare_deviance).state != 0.0;"
             then:
@@ -168,11 +168,11 @@ sensor:
                   then:
                     # INcrease Auto-Tare offset to slowly align real zero value with expected zero value
                     - lambda: |-
-                        id(auto_tare_difference) += 10;
+                        id(auto_tare_difference) += 100;
                   else:
                     # DEcrease Auto-Tare offset to slowly align real zero value with expected zero value
                     - lambda: |-
-                        id(auto_tare_difference) -= 10;
+                        id(auto_tare_difference) -= 100;
 
   - platform: template
     id: smart_scale_hx711_value_raw_diagnostic
@@ -192,14 +192,8 @@ sensor:
           # retrieve these values by evaluating the raw values with loads of known mass.
           # note that a bigger difference between measurements usually results in higher resolution,
           # so measure 0 Kg and the highest known mass you have (like f.ex. your own weight, measured by a normal scale with good accuracy)
-          - -681502 -> 0
-          - -670838 -> 0.899
-          - -643407 -> 2.136
-          - -577769 -> 5.1
-          - -529659 -> 7.236
-          - -454071 -> 10.6
-          - -293209 -> 17.836
-          - 640830 -> 57.6
+          - -613431 -> 0
+          - 724156 -> 57.5
       # map values below 0.1 to 0 (to decrease value changes due to random fluctuation)
       - lambda: |-
           if (x <= 0.1) {
