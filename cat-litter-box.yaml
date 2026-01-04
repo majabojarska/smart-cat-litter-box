@@ -35,6 +35,7 @@ wifi:
   ssid: !secret wifi_ssid
   password: !secret wifi_password
   domain: !secret domain
+  min_auth_mode: WPA2
   ap:
     password: !secret cat_litter_box_wifi_ap_password
 
